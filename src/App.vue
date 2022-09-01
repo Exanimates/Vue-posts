@@ -1,6 +1,12 @@
 <template>
-  <input type="text" @input="event => searchText = event.target.value"/>
-  <PostComp v-for="post in filteredPosts" :key="post.id" :post="post"/>
+  <div class="content">
+    <div class="search">
+      <b-form-input class="input" type="text" v-model="searchText" placeholder="Filter by author"/>
+    </div>
+    <div class="post-container">
+      <PostComp v-for="post in filteredPosts" :key="post.id" :post="post"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -51,12 +57,24 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .input {
+    width: 300px;
+    margin: auto;    
+  }
+  .content {
+    background-color: aliceblue;
+  }
+  .search {
+    text-align: center;
+  }
+
+  .post-container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid white;
+    margin-top: 20px;
+    height: 60%;
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
 </style>
